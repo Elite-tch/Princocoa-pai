@@ -3,6 +3,8 @@ import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/footer";
+import { siteDescription, siteKeywords, siteName, siteTitle, siteUrl } from "./seo";
+
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
@@ -18,14 +20,44 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Princocoa Studios × PAI Consulting — Brand, Content & Visibility Ecosystem",
-  description: "Princocoa Studios × PAI Consulting helps founders, coaches, creatives, and professionals build their brand, create strategic content, grow their digital presence, and expand their visibility through personal branding, content production, and platform management.",
-  keywords: "personal branding Nigeria, content production, brand strategy, visibility, influencer, PAI Consulting, Princocoa Studios",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: siteTitle,
+    template: `%s | ${siteName}`,
+  },
+  description: siteDescription,
+  keywords: siteKeywords,
+  applicationName: siteName,
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Princocoa Studios × PAI Consulting",
-    description: "Build the brand. Tell the story. Grow the audience.",
+    title: siteTitle,
+    description: siteDescription,
     type: "website",
-  }
+    url: siteUrl,
+    siteName,
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+  },
 };
 
 export default function RootLayout({
@@ -40,9 +72,38 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <NavBar />
+        <script
+          type="application/ld+json"
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: siteName,
+              url: siteUrl,
+              description: siteDescription,
+              email: "mailto:princocoastudios@gmail.com",
+              sameAs: [
+                "https://instagram.com/princocoastudios",
+                "https://linkedin.com/company/princocoastudios",
+                "https://youtube.com/@princocoastudios",
+              ],
+              areaServed: "Worldwide",
+              serviceType: [
+                "Brand strategy",
+                "Content production",
+                "Podcast production",
+                "YouTube production",
+                "Platform management",
+                "Visibility consulting",
+              ],
+            }),
+          }}
+        />
         {children}
         <Footer />
       </body>
     </html>
   );
 }
+
