@@ -250,7 +250,6 @@ section {
 
 .section-title em {
   font-style: italic;
-  color: var(--ink);
 }
 
 .section-lead {
@@ -650,6 +649,7 @@ section {
   color: var(--ink-60);
   margin-bottom: 28px;
 }
+
 
 .gap-col-left p strong {
   font-weight: 500;
@@ -4655,5 +4655,17 @@ footer {
 
   .social-right {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Global responsive override for inline grids */
+@media (max-width: 900px) {
+
+  .responsive-grid,
+  .gap-items,
+  .growth-grid,
+  .growth-grid-2,
+  .service-modules {
+    grid-template-columns: 1fr !important;
   }
 }

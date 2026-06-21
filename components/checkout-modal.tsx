@@ -1,6 +1,5 @@
 'use client';
 import { useState } from 'react';
-import PaystackPop from '@paystack/inline-js';
 import toast from 'react-hot-toast';
 
 interface CheckoutModalProps {
@@ -17,14 +16,16 @@ export default function CheckoutModal({ isOpen, onClose, amount, packageName }: 
 
   if (!isOpen) return null;
 
-  const handlePay = (e: React.FormEvent) => {
+  const handlePay = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !name) return;
 
     setIsProcessing(true);
 
-    const paystack = new PaystackPop();
-    paystack.newTransaction({
+    try {
+      const PaystackPop = (await import('@paystack/inline-js')).default;
+      const paystack = new PaystackPop();
+      paystack.newTransaction({
       key: process.env.NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY || '',
       email: email,
       amount: amount * 100, // Paystack expects amount in kobo
@@ -51,6 +52,11 @@ export default function CheckoutModal({ isOpen, onClose, amount, packageName }: 
         setIsProcessing(false);
       }
     });
+    } catch (error) {
+      console.error("Paystack SDK could not be loaded", error);
+      setIsProcessing(false);
+      toast.error("Payment could not be initialized.");
+    }
   };
 
   return (

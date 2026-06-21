@@ -265,7 +265,7 @@ export default function Home() {
             More Than Social Media
           </div>
 
-          <div style={{
+          <div className="responsive-grid"  style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '72px',
@@ -298,7 +298,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div style={{
+          <div className="responsive-grid"  style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4,1fr)',
             gap: '3px'
@@ -445,7 +445,7 @@ export default function Home() {
           </div>
 
           {/* Bottom row - 3 items */}
-          <div style={{
+          <div className="responsive-grid"  style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3,1fr)',
             gap: '3px',
@@ -1311,22 +1311,22 @@ export default function Home() {
                 overflow: 'hidden',
                 fontSize: '12px'
               }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', background: 'rgba(255,255,255,0.06)' }}>
+                <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', background: 'rgba(255,255,255,0.06)' }}>
                   <div style={{ padding: '10px 14px', color: 'rgba(255,255,255,0.4)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>—</div>
                   <div style={{ padding: '10px 14px', color: 'rgba(255,255,255,0.6)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', borderLeft: '1px solid rgba(255,255,255,0.07)' }}>Mobile</div>
                   <div style={{ padding: '10px 14px', color: 'rgba(255,255,255,0.6)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', borderLeft: '1px solid rgba(255,255,255,0.07)' }}>Cinema</div>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.4)' }}>Camera</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Smartphone</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Cinema-grade</div>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.4)' }}>Visual Style</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Natural, real</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Luxury, editorial</div>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.4)' }}>Ideal For</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Regular content</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Brand launches</div>
@@ -1521,7 +1521,7 @@ export default function Home() {
                 <li>(8) Stories per month</li>
                 <li>&#8358;20K budget for Facebook ads</li>
               </ul>
-              <button className="s3-pay-btn">
+              <button className="s3-pay-btn" onClick={() => handleCheckout(250000, 'Platform Management - Slow Pace')}>
                 Pay ₦250K/month via Paystack →
               </button>
             </div>
@@ -1540,8 +1540,7 @@ export default function Home() {
                 <li>(16) Stories per month</li>
                 <li>&#8358;30K budget for Facebook ads</li>
               </ul>
-              <button className="s3-pay-btn"
-              >
+              <button className="s3-pay-btn" onClick={() => handleCheckout(450000, 'Platform Management - Medium Pace')}>
                 Pay ₦450K/month via Paystack →
               </button>
             </div>
@@ -1560,8 +1559,7 @@ export default function Home() {
                 <li>(20) Stories per month</li>
                 <li>&#8358;50K budget for Facebook ads</li>
               </ul>
-              <button className="s3-pay-btn"
-              >
+              <button className="s3-pay-btn" onClick={() => handleCheckout(550000, 'Platform Management - Fast Pace')}>
                 Pay ₦550K/month via Paystack →
               </button>
             </div>
@@ -1857,7 +1855,7 @@ export default function Home() {
           </div>
 
           {/* Who it's for + photo strip */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3px', marginBottom: '3px' }}>
+          <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3px', marginBottom: '3px' }}>
             <div style={{ background: 'var(--bg)', padding: '40px 36px' }}>
               <h4 style={{
                 fontFamily: 'var(--serif)',
@@ -2027,7 +2025,7 @@ export default function Home() {
           </div>
 
           {/* Visual strip */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '3px' }}>
+          <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '3px' }}>
             <div style={{
               minHeight: '160px',
               position: 'relative',
@@ -2150,7 +2148,7 @@ export default function Home() {
           <div className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.5)' }}>
             Princocoa Studios — Content Production
           </div>
-          <div className="service-header" style={{
+          <div className="service-header responsive-grid" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '72px',
@@ -2271,7 +2269,7 @@ export default function Home() {
             }}>
               Ideal For Individuals &amp; Organisations Who Want Long-Form Authority
             </h4>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '14px' }}>
+            <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '14px' }}>
               <div style={{ background: 'rgba(255,255,255,.04)', padding: '16px', borderLeft: '2px solid var(--blue)' }}>
                 <div style={{ fontSize: '13px', fontWeight: '500', color: 'var(--white)', marginBottom: '4px' }}>Personal Brands</div>
                 <p style={{ fontSize: '12px', color: 'rgba(255,255,255,.35)', lineHeight: '1.55' }}>
@@ -2315,7 +2313,7 @@ export default function Home() {
         <section className="journey" id="journey">
           <div className="section-eyebrow">Your Visibility Journey</div>
           <h2 className="section-title">From Hidden<br />To <em>Unmissable</em></h2>
-          <div className="journey-steps" style={{
+          <div className="journey-steps responsive-grid" style={{
             gridTemplateColumns: 'repeat(3,1fr)',
             gap: '36px'
           }}>

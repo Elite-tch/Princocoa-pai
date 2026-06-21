@@ -171,7 +171,7 @@ export default function Page() {
 
             {/* FOOTER */}
             <footer>
-                <div className="footer-top" style={{ gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1fr' }}>
+                <div className="footer-top responsive-grid" style={{ gridTemplateColumns: '1.5fr 1fr 1fr 1fr 1fr' }}>
                     <div>
                         <div className="footer-brand-name">Princocoa Studios<span> &#215; </span>PAI Consulting</div>
                         <div className="footer-tagline">A complete Brand &amp; Visibility Ecosystem for founders, coaches,
