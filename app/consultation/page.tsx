@@ -18,6 +18,8 @@ export default function Page() {
     const [errors, setErrors] = useState<FormErrors>({});
     const [submitted, setSubmitted] = useState(false);
     const [touched, setTouched] = useState<Partial<Record<keyof FormData, boolean>>>({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [result, setResult] = useState('');
 
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {
@@ -66,21 +68,54 @@ export default function Page() {
         setTouched(prev => ({ ...prev, [name]: true }));
         setErrors(validate(formData));
     };
-
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        // Validate all fields
         const allTouched = Object.keys(formData).reduce((acc, key) => ({ ...acc, [key]: true }), {});
         setTouched(allTouched);
         const errs = validate(formData);
         setErrors(errs);
-        if (Object.keys(errs).length === 0) {
-            // Build mailto link with form data
-            const subject = encodeURIComponent(`Consultation Enquiry — ${formData.service || 'General'}`);
-            const body = encodeURIComponent(
-                `Name: ${formData.fname} ${formData.lname}\nEmail: ${formData.email}\nService: ${formData.service}\n\nMessage:\n${formData.message}`
-            );
-            window.location.href = `mailto:princocoastudios@gmail.com?subject=${subject}&body=${body}`;
-            setSubmitted(true);
+
+        if (Object.keys(errs).length > 0) {
+            return;
+        }
+
+        setIsSubmitting(true);
+        setResult('Sending...');
+
+        try {
+            const formDataToSend = new FormData();
+            formDataToSend.append('name', `${formData.fname} ${formData.lname}`);
+            formDataToSend.append('email', formData.email);
+            formDataToSend.append('service', formData.service);
+            formDataToSend.append('message', formData.message);
+            formDataToSend.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY!);
+            formDataToSend.append('subject', `New Enquiry: ${formData.service}`);
+            formDataToSend.append('from_name', 'Princocoa Studios × PAI Consulting');
+
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formDataToSend
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setSubmitted(true);
+                setResult('Form Submitted Successfully');
+                setFormData({
+                    fname: '', lname: '', email: '', service: '', message: ''
+                });
+                setTouched({});
+                setErrors({});
+            } else {
+                setResult(data.message || 'Something went wrong. Please try again.');
+            }
+        } catch (error) {
+            setResult('Something went wrong. Please try again.');
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -238,7 +273,10 @@ export default function Page() {
                                     />
                                     {errorMsg('message')}
                                 </div>
-                                <button type="submit" className="cf-submit">Send Message →</button>
+                                <button type="submit" className="cf-submit" disabled={isSubmitting}>
+                                    {isSubmitting ? 'Sending...' : 'Send Message →'}
+                                </button>
+
                             </form>
                         )}
                     </div>

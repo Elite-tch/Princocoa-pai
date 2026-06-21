@@ -1,7 +1,11 @@
 'use client'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Page() {
+    const [email, setEmail] = useState('');
+    const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+    const [message, setMessage] = useState('');
+
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => {
@@ -18,6 +22,40 @@ export default function Page() {
 
         return () => observer.disconnect();
     }, []);
+
+    const handleNewsletterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setStatus('loading');
+        setMessage('');
+
+        try {
+            const formData = new FormData();
+            formData.append('email', email);
+            formData.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY!);
+            formData.append('subject', 'New Newsletter Subscriber - Princocoa Studios');
+            formData.append('from_name', 'Princocoa Studios Newsletter');
+            formData.append('form_type', 'newsletter');
+
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setStatus('success');
+                setMessage('✅ You\'ve been subscribed!');
+                setEmail('');
+            } else {
+                setStatus('error');
+                setMessage('❌ Please try again.');
+            }
+        } catch (error) {
+            setStatus('error');
+            setMessage('❌ Please try again.');
+        }
+    };
 
     return (
         <>
@@ -141,10 +179,28 @@ export default function Page() {
                             reasons.</div>
                         <div className="footer-newsletter">
                             <p>Join Our Newsletter</p>
-                            <div className="fn-row">
-                                <input type="email" id="footer-email" placeholder="Your email" />
-                                <button>Subscribe</button>
-                            </div>
+                            <form onSubmit={handleNewsletterSubmit} className="fn-row">
+                                <input
+                                    type="email"
+                                    id="footer-email"
+                                    placeholder="Your email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                                <button type="submit" disabled={status === 'loading'}>
+                                    {status === 'loading' ? 'Subscribing...' : 'Subscribe'}
+                                </button>
+                            </form>
+                            {message && (
+                                <p style={{
+                                    marginTop: '8px',
+                                    fontSize: '13px',
+                                    color: status === 'success' ? '#4CAF50' : '#e55a5a'
+                                }}>
+                                    {message}
+                                </p>
+                            )}
                         </div>
                     </div>
                     <div className="footer-col">
@@ -191,8 +247,5 @@ export default function Page() {
                 </div>
             </footer>
         </>
-
-
     )
-
 }
