@@ -3,6 +3,7 @@ import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/Navbar";
 import Footer from "@/components/footer";
+import { Toaster } from "react-hot-toast";
 import { siteDescription, siteKeywords, siteName, siteTitle, siteUrl } from "./seo";
 
 const cormorant = Cormorant_Garamond({
@@ -72,6 +73,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <NavBar />
+        <Toaster position="top-center" />
         <script
           type="application/ld+json"
           suppressHydrationWarning

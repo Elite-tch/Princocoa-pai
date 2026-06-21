@@ -1,11 +1,20 @@
-
 'use client'
 import { useState, useEffect } from 'react';
+import CheckoutModal from '@/components/checkout-modal';
 
 export default function Home() {
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [selectedTier, setSelectedTier] = useState<number>(2);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [checkoutAmount, setCheckoutAmount] = useState(0);
+  const [checkoutPackage, setCheckoutPackage] = useState('');
+
+  const handleCheckout = (amount: number, pkgName: string) => {
+    setCheckoutAmount(amount);
+    setCheckoutPackage(pkgName);
+    setIsCheckoutOpen(true);
+  };
 
   const [prodChoice, setProdChoice] = useState<'mobile' | 'cinema'>('mobile');
   const [deliveryChoice, setDeliveryChoice] = useState<'raw' | 'edited'>('raw');
@@ -2395,11 +2404,17 @@ export default function Home() {
                 <div className="pc-row">
                   <div className="pc-row-label">Single Session — Choose any one session based on your current
                     needs</div>
-                  <div className="pc-row-price">&#8358;150,000</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;150,000</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(150000, "Brand Identity - Single Session")}>Pay Now</button>
+                  </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">4 Sessions — Focused brand development across multiple areas</div>
-                  <div className="pc-row-price">&#8358;450,000</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;450,000</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(450000, "Brand Identity - 4 Sessions")}>Pay Now</button>
+                  </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Full Programme — 5 Sessions &nbsp;
@@ -2415,31 +2430,49 @@ export default function Home() {
                     }}>Recommended</span>
                   </div>
 
-                  <div className="pc-row-price">&#8358;650,000</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;650,000</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(650000, "Brand Identity - Full Programme")}>Pay Now</button>
+                  </div>
                 </div>
               </div>
               <div className="pc-section fade-up">
                 <div className="pcs-title">Content Production &amp; Brand Storytelling — Princocoa Studios</div>
                 <div className="pc-row">
                   <div className="pc-row-label">Mobile Production + Raw Footage Only</div>
-                  <div className="pc-row-price">&#8358;500,000</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;500,000</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(500000, "Content Production - Mobile + Raw")}>Pay Now</button>
+                  </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Mobile Production + Fully Edited &amp; Ready to Publish</div>
-                  <div className="pc-row-price">&#8358;750,000</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;750,000</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(750000, "Content Production - Mobile + Edited")}>Pay Now</button>
+                  </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Premium Cinema Production + Raw Footage Only</div>
-                  <div className="pc-row-price">&#8358;1,000,000</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;1,000,000</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(1000000, "Content Production - Premium Cinema + Raw")}>Pay Now</button>
+                  </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Premium Cinema Production + Fully Edited &amp; Ready to Publish
                   </div>
-                  <div className="pc-row-price">&#8358;1,500,000</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;1,500,000</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(1500000, "Content Production - Premium Cinema + Edited")}>Pay Now</button>
+                  </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Script Writing Assistance + Prompts (Add-On)</div>
-                  <div className="pc-row-price">&#8358;60,000</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;60,000</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(60000, "Add-On: Script Writing Assistance")}>Pay Now</button>
+                  </div>
                 </div>
               </div>
               <div className="pc-section fade-up">
@@ -2447,19 +2480,31 @@ export default function Home() {
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Slow Pace — 2 posts per week per platform / month</div>
-                  <div className="pc-row-price">&#8358;250,000/mo</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;250,000/mo</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(250000, "Platform Management - Slow Pace (1st Month)")}>Pay Now</button>
+                  </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Medium Pace — 4 posts per week per platform / month</div>
-                  <div className="pc-row-price">&#8358;450,000/mo</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;450,000/mo</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(450000, "Platform Management - Medium Pace (1st Month)")}>Pay Now</button>
+                  </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Fast Pace — 20 posts per platform / month</div>
-                  <div className="pc-row-price">&#8358;550,000/mo</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>&#8358;550,000/mo</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(550000, "Platform Management - Fast Pace (1st Month)")}>Pay Now</button>
+                  </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Additional Platform Add-On (TikTok / YouTube Shorts)</div>
-                  <div className="pc-row-price">+&#8358;100,000/mo</div>
+                  <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                    <span>+&#8358;100,000/mo</span>
+                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(100000, "Add-On: Additional Platform (1st Month)")}>Pay Now</button>
+                  </div>
                 </div>
               </div>
               <div className="pc-section fade-up">
@@ -2963,9 +3008,13 @@ export default function Home() {
         </section>
       </div>
 
+      <CheckoutModal 
+        isOpen={isCheckoutOpen} 
+        onClose={() => setIsCheckoutOpen(false)}
+        amount={checkoutAmount}
+        packageName={checkoutPackage}
+      />
     </>
-
-
 
   );
 }
