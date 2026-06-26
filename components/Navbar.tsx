@@ -49,7 +49,7 @@ export default function NavBar() {
     };
 
     return (
-        <nav id="main-nav">
+        <nav id="main-nav" className="overflow-hidden">
             <Link href="/" className="nav-logo">
                 Princocoa<span> × </span>PAI
             </Link>

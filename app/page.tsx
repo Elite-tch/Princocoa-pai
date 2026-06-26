@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <>
-      <div id="page-home" className="page active">
+      <div id="page-home" className="page active overflow-hidden">
 
         {/* HERO */}
         <section className="hero" id="home">
@@ -202,7 +202,7 @@ export default function Home() {
               width={100}
               height={200}
               unoptimized
-              className='w-[50%] h-[400px]'
+              className='md:w-[50%] w-[100%] h-[300px] md:h-[400px]'
             />
 
           </div>
@@ -1460,7 +1460,7 @@ export default function Home() {
               width={100}
               height={200}
               unoptimized
-              className='w-[50%] h-[400px]'
+              className='md:w-[50%] md:h-[400px] w-[100%] h-[300px]'
             />
           </div>
 
