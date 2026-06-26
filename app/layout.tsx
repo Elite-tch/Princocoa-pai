@@ -5,7 +5,7 @@ import NavBar from "@/components/Navbar";
 import Footer from "@/components/footer";
 import { Toaster } from "react-hot-toast";
 import { siteDescription, siteKeywords, siteName, siteTitle, siteUrl } from "./seo";
-
+import TopScrol from "@/components/TopScroll";
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
@@ -72,6 +72,7 @@ export default function RootLayout({
       className={`${cormorant.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <TopScrol />
         <NavBar />
         <Toaster position="top-center" />
         <script

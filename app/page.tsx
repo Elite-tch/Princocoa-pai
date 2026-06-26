@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react';
 import CheckoutModal from '@/components/checkout-modal';
-
+import Image from 'next/image';
 export default function Home() {
 
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
@@ -51,6 +51,29 @@ export default function Home() {
 
         {/* HERO */}
         <section className="hero" id="home">
+          <div className="hero-right">
+            <div className="hero-photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://res.cloudinary.com/dibwnfwk9/image/upload/v1782333342/Copy_of_DSC02776_bevmjc.jpg"
+                alt="hero"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center top',
+                  zIndex: 0
+                }}
+              />
+              <div className="hero-photo-overlay"></div>
+            </div>
+            <div className="hero-photo-badge">
+              <p>Brand &amp; Visibility Ecosystem</p>
+              <strong>Build. Tell. Grow.</strong>
+            </div>
+          </div>
           <div className="hero-left">
             <div className="hero-eyebrow">Brand · Content · Visibility Ecosystem</div>
             <h1>Your Expertise<br />Deserves To<br />Be <em>Seen.</em></h1>
@@ -67,21 +90,7 @@ export default function Home() {
               <div className="hero-trust-item">Faith &amp; Community Leaders</div>
             </div>
           </div>
-          <div className="hero-right">
-            <div className="hero-photo">
-              <div className="hero-photo-overlay"></div>
-              <div className="hero-photo-inner">
-                <svg>
-                  <use href="#ico-person" />
-                </svg>
-                <p>Premium executive portrait — confident founder or CEO in a professional environment</p>
-              </div>
-            </div>
-            <div className="hero-photo-badge">
-              <p>Brand &amp; Visibility Ecosystem</p>
-              <strong>Build. Tell. Grow.</strong>
-            </div>
-          </div>
+
         </section>
 
         {/* PROOF BAR */}
@@ -111,8 +120,21 @@ export default function Home() {
 
         {/* VISIBILITY GAP */}
         <section className="visibility-gap" id="visibility">
-          <div className="section-eyebrow">The Visibility Gap</div>
-          <h2 className="section-title">Brilliant People<br />Are Often <em>Invisible</em></h2>
+          <div className='flex justify-between w-full md:flex-row flex-col gap-5 '>
+            <div>
+              <div className="section-eyebrow">The Visibility Gap</div>
+              <h2 className="section-title">Brilliant People<br />Are Often <em>Invisible</em></h2>
+            </div>
+            {/*   <Image src='https://res.cloudinary.com/dibwnfwk9/image/upload/v1782490539/Copy_of_KDS-53_2_kk1drw.jpg'
+              alt='visibility'
+              width={100}
+              height={200}
+              unoptimized
+              className='w-[50%] h-[350px]'
+            />  */}
+          </div>
+
+
           <div className="gap-grid">
             <div className="gap-col-left fade-up">
               <p>You have built something <strong>remarkable.</strong> You have expertise that took years to
@@ -167,11 +189,24 @@ export default function Home() {
 
         {/* ECOSYSTEM */}
         <section className="ecosystem" id="ecosystem">
-          <div className="section-eyebrow">The Solution</div>
-          <h2 className="section-title">Build The Brand.<br />Tell The Story.<br /><em>Grow The Audience.</em></h2>
-          <p className="section-lead">A complete Brand &amp; Visibility Ecosystem—personal branding, content production,
-            platform management, podcast production, YouTube channel building, and strategic growth
-            services—designed to build platforms that outlast trends.</p>
+          <div className='flex justify-between w-full md:flex-row flex-col gap-5 '>
+            <div>
+              <div className="section-eyebrow">The Solution</div>
+              <h2 className="section-title">Build The Brand.<br />Tell The Story.<br /><em>Grow The Audience.</em></h2>
+              <p className="section-lead">A complete Brand &amp; Visibility Ecosystem—personal branding, content production,
+                platform management, podcast production, YouTube channel building, and strategic growth
+                services—designed to build platforms that outlast trends.</p>
+            </div>
+            <Image src='https://res.cloudinary.com/dibwnfwk9/image/upload/v1782330404/Copy_of_untitled-02458_g4qeu9.jpg'
+              alt='visibility'
+              width={100}
+              height={200}
+              unoptimized
+              className='w-[50%] h-[400px]'
+            />
+
+          </div>
+
           <div className="ecosystem-cards">
             <div className="ecosystem-card fade-up">
               <div className="ec-tag">PAI Consulting</div>
@@ -265,7 +300,7 @@ export default function Home() {
             More Than Social Media
           </div>
 
-          <div className="responsive-grid"  style={{
+          <div className="responsive-grid" style={{
             display: 'grid',
             gridTemplateColumns: '1fr 1fr',
             gap: '72px',
@@ -298,7 +333,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="responsive-grid"  style={{
+          <div className="responsive-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4,1fr)',
             gap: '3px'
@@ -445,7 +480,7 @@ export default function Home() {
           </div>
 
           {/* Bottom row - 3 items */}
-          <div className="responsive-grid"  style={{
+          <div className="responsive-grid" style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3,1fr)',
             gap: '3px',
@@ -1086,12 +1121,15 @@ export default function Home() {
             </p>
           </div>
           <div className="split-photo">
-            <div className="photo-fill" style={{ background: 'linear-gradient(135deg,#E8E8E8,#F0F0F0)' }}>
-              <svg style={{ color: 'rgba(11,31,58,0.3)' }}>
-                <use href="#ico-camera" />
-              </svg>
-              <p>Behind-the-scenes of a professional content shoot — crew, lighting, brand leader on camera</p>
-            </div>
+            <video
+              src="https://res.cloudinary.com/dibwnfwk9/video/upload/v1782330554/Copy_of_DJI_20251215_100119_667_AM_video_zyshpe.mp4"
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="video-fill"
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
             <div className="photo-caption">Behind the lens — content day</div>
           </div>
         </div>
@@ -1203,11 +1241,12 @@ export default function Home() {
                       borderRadius: '4px',
                       background: '#1A1A1A'
                     }}>
+
                       <iframe
-                        src="https://www.youtube.com/embed/p1VfoVizdWs?rel=0&modestbranding=1"
+                        src="https://res.cloudinary.com/dibwnfwk9/video/upload/v1782491928/chef_sia_ad__talking_head_1_ouai2i.mp4"
                         title="Mobile Production Example"
                         frameBorder="0"
-                        allow="autoplay; encrypted-media; picture-in-picture"
+                        allow="autoplay; encrypted-media; picture-in-picture; accelerometer; picture-in-picture"
                         allowFullScreen
                         style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' }}
                       />
@@ -1279,7 +1318,7 @@ export default function Home() {
                       background: '#1A1A1A'
                     }}>
                       <iframe
-                        src="https://www.youtube.com/embed/p1VfoVizdWs?rel=0&modestbranding=1&start=20"
+                        src="https://www.youtube.com/embed/bBFTSRYzxVw"
                         title="Cinema Production Example"
                         frameBorder="0"
                         allow="autoplay; encrypted-media; picture-in-picture"
@@ -1311,22 +1350,22 @@ export default function Home() {
                 overflow: 'hidden',
                 fontSize: '12px'
               }}>
-                <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', background: 'rgba(255,255,255,0.06)' }}>
+                <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', background: 'rgba(255,255,255,0.06)' }}>
                   <div style={{ padding: '10px 14px', color: 'rgba(255,255,255,0.4)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase' }}>—</div>
                   <div style={{ padding: '10px 14px', color: 'rgba(255,255,255,0.6)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', borderLeft: '1px solid rgba(255,255,255,0.07)' }}>Mobile</div>
                   <div style={{ padding: '10px 14px', color: 'rgba(255,255,255,0.6)', fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', borderLeft: '1px solid rgba(255,255,255,0.07)' }}>Cinema</div>
                 </div>
-                <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.4)' }}>Camera</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Smartphone</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Cinema-grade</div>
                 </div>
-                <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.4)' }}>Visual Style</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Natural, real</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Luxury, editorial</div>
                 </div>
-                <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.4)' }}>Ideal For</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Regular content</div>
                   <div style={{ padding: '9px 14px', color: 'rgba(255,255,255,0.7)', borderLeft: '1px solid rgba(255,255,255,0.05)' }}>Brand launches</div>
@@ -1352,51 +1391,7 @@ export default function Home() {
               <div className="s2-price-display">
                 <div className="spd-label">Your Investment</div>
                 <div className="spd-price" id="price-display"><span>&#8358;</span>{contentShootPrices[prodChoice][deliveryChoice].toLocaleString()}</div>
-                <div id="s2-discount-row" style={{ marginTop: '14px', paddingTop: '14px', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                  <div style={{ fontSize: '10px', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: '8px' }}>
-                    Have a Discount Code?
-                  </div>
-                  <div style={{ display: 'flex', gap: '0' }}>
-                    <input
-                      id="s2-discount-input"
-                      type="text"
-                      placeholder="Enter code"
-                      style={{
-                        flex: '1',
-                        padding: '9px 12px',
-                        border: '1px solid rgba(255,255,255,0.15)',
-                        borderRight: 'none',
-                        background: 'rgba(255,255,255,0.06)',
-                        color: 'var(--white)',
-                        fontFamily: 'var(--sans)',
-                        fontSize: '13px',
-                        outline: 'none',
-                        borderRadius: '4px 0 0 4px',
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.06em'
-                      }}
-                    />
-                    <button
 
-                      style={{
-                        background: 'rgba(255,255,255,0.12)',
-                        border: '1px solid rgba(255,255,255,0.15)',
-                        color: 'var(--white)',
-                        padding: '9px 16px',
-                        fontFamily: 'var(--sans)',
-                        fontSize: '11px',
-                        fontWeight: '600',
-                        letterSpacing: '0.08em',
-                        textTransform: 'uppercase',
-                        cursor: 'pointer',
-                        borderRadius: '0 4px 4px 0'
-                      }}
-                    >
-                      Apply
-                    </button>
-                  </div>
-                  <div id="s2-discount-msg" style={{ fontSize: '12px', marginTop: '6px', minHeight: '18px' }} />
-                </div>
               </div>
               <div className="addon-box">
                 <div>
@@ -1405,12 +1400,7 @@ export default function Home() {
                 </div>
                 <strong>+&#8358;60,000</strong>
               </div>
-              <div className="s2-pay-row">
-                <span>Pay securely via Paystack</span>
-                <button className="s2-pay-btn" >
-                  Pay Now →
-                </button>
-              </div>
+
               <a href="mailto:princocoastudios@gmail.com" className="pricing-cta" style={{ marginTop: '12px', display: 'block' }}>
                 Book Your Content Shoot
               </a>
@@ -1457,10 +1447,25 @@ export default function Home() {
 
         {/* SERVICE 3 */}
         <section className="service-3" id="service3">
-          <div className="section-eyebrow">Princocoa Studios &#8212; Service Three</div>
-          <h2 className="section-title">Stay Visible While<br />You Focus On <em>What Matters</em></h2>
-          <p className="section-lead">Consistency is one of the biggest challenges for busy founders, coaches, and
-            professionals. We keep your digital presence active, professional, and aligned with your goals.</p>
+          <div className='flex justify-between w-full md:flex-row flex-col gap-5 '>
+            <div>
+              <div className="section-eyebrow">Princocoa Studios &#8212; Service Three</div>
+              <h2 className="section-title">Stay Visible While<br />You Focus On <em>What Matters</em></h2>
+              <p className="section-lead">Consistency is one of the biggest challenges for busy founders, coaches, and
+                professionals. We keep your digital presence active, professional, and aligned with your goals.</p>
+            </div>
+
+            <Image src='https://res.cloudinary.com/dibwnfwk9/image/upload/v1782493704/Copy_of_untitled-02164_wmnihk.jpg'
+              alt='visibility'
+              width={100}
+              height={200}
+              unoptimized
+              className='w-[50%] h-[400px]'
+            />
+          </div>
+
+
+
           <div className="s3-why">
             <div>
               <p>Most founders, coaches, and creatives know they should be posting consistently. Most do
@@ -1493,7 +1498,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="s3-platforms">
+          <div className="s3-platforms flex flex-col justify-center items-center w-full mx-auto">
             <div className="s3-plat-label">Choose any two core platforms</div>
             <div className="s3-plat-row">
               <div className="s3-plat">LinkedIn</div>
@@ -1521,9 +1526,7 @@ export default function Home() {
                 <li>(8) Stories per month</li>
                 <li>&#8358;20K budget for Facebook ads</li>
               </ul>
-              <button className="s3-pay-btn" onClick={() => handleCheckout(250000, 'Platform Management - Slow Pace')}>
-                Pay ₦250K/month via Paystack →
-              </button>
+
             </div>
             <div className="s3-pace medium fade-up">
               <div className="s3-pace-badge">Recommended</div>
@@ -1540,9 +1543,7 @@ export default function Home() {
                 <li>(16) Stories per month</li>
                 <li>&#8358;30K budget for Facebook ads</li>
               </ul>
-              <button className="s3-pay-btn" onClick={() => handleCheckout(450000, 'Platform Management - Medium Pace')}>
-                Pay ₦450K/month via Paystack →
-              </button>
+
             </div>
             <div className="s3-pace fast fade-up">
               <div className="s3-pace-badge">Most Visibility</div>
@@ -1559,9 +1560,7 @@ export default function Home() {
                 <li>(20) Stories per month</li>
                 <li>&#8358;50K budget for Facebook ads</li>
               </ul>
-              <button className="s3-pay-btn" onClick={() => handleCheckout(550000, 'Platform Management - Fast Pace')}>
-                Pay ₦550K/month via Paystack →
-              </button>
+
             </div>
           </div>
           <div className="s3-bottom">
@@ -1778,6 +1777,48 @@ export default function Home() {
           <div className="service-header">
             <div>
               <h2 className="section-title">Launch A Podcast<br />That <em>Builds Authority</em></h2>
+              <div className="spotify-episodes grid grid-cols-1 gap-2 md:grid-cols-1 md:gap-4">
+                <iframe
+                  src="https://open.spotify.com/embed/episode/0oWM5qOBPEvC3HRLFxm43V"
+                  width="100%"
+                  height="152"
+                  style={{ border: 0, borderRadius: "12px", overflow: "hidden" }}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  scrolling="no"
+                />
+
+                <iframe
+                  src="https://open.spotify.com/embed/episode/3SMTZSyR39nGaskFZ5GOfQ"
+                  width="100%"
+                  height="152"
+                  style={{ border: 0, borderRadius: "12px", overflow: "hidden" }}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  scrolling="no"
+                />
+
+                <iframe
+                  src="https://open.spotify.com/embed/episode/0Dbl6hBn0uUEqktfx9pPsY"
+                  width="100%"
+                  height="152"
+                  style={{ border: 0, borderRadius: "12px", overflow: "hidden" }}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  scrolling="no"
+                />
+
+                <iframe
+                  src="https://open.spotify.com/embed/episode/3SMTZSyR39nGaskFZ5GOfQ"
+                  width="100%"
+                  height="152"
+                  style={{ border: 0, borderRadius: "12px", overflow: "hidden" }}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  scrolling="no"
+                />
+              </div>
+
             </div>
             <div className="fade-up">
               <p style={{
@@ -1855,7 +1896,7 @@ export default function Home() {
           </div>
 
           {/* Who it's for + photo strip */}
-          <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3px', marginBottom: '3px' }}>
+          <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3px', marginBottom: '3px' }}>
             <div style={{ background: 'var(--bg)', padding: '40px 36px' }}>
               <h4 style={{
                 fontFamily: 'var(--serif)',
@@ -2025,7 +2066,7 @@ export default function Home() {
           </div>
 
           {/* Visual strip */}
-          <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '3px' }}>
+          <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '3px' }}>
             <div style={{
               minHeight: '160px',
               position: 'relative',
@@ -2041,17 +2082,14 @@ export default function Home() {
                 flexDirection: 'column',
                 gap: '10px'
               }}>
-                <svg width="32" height="32" style={{ color: 'rgba(255,255,255,.35)' }}>
-                  <use href="#ico-mic" />
-                </svg>
-                <p style={{
-                  fontSize: '10px',
-                  letterSpacing: '.12em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,.25)',
-                  textAlign: 'center',
-                  maxWidth: '100px'
-                }}>Podcast recording studio</p>
+                <Image src='https://res.cloudinary.com/dibwnfwk9/image/upload/v1782494314/Copy_of_untitled-02147_h8whq2.jpg'
+                  alt='visibility'
+                  width={100}
+                  height={200}
+                  unoptimized
+                  className='w-[100%] h-[400px]'
+                />
+
               </div>
             </div>
             <div style={{
@@ -2069,17 +2107,13 @@ export default function Home() {
                 flexDirection: 'column',
                 gap: '10px'
               }}>
-                <svg width="32" height="32" style={{ color: 'rgba(255,255,255,.35)' }}>
-                  <use href="#ico-camera" />
-                </svg>
-                <p style={{
-                  fontSize: '10px',
-                  letterSpacing: '.12em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,.25)',
-                  textAlign: 'center',
-                  maxWidth: '100px'
-                }}>Multi-camera setup</p>
+                <Image src='https://res.cloudinary.com/dibwnfwk9/image/upload/v1782330404/Copy_of_untitled-02458_g4qeu9.jpg'
+                  alt='visibility'
+                  width={100}
+                  height={200}
+                  unoptimized
+                  className='w-[100%] h-[400px]'
+                />
               </div>
             </div>
             <div style={{
@@ -2097,17 +2131,13 @@ export default function Home() {
                 flexDirection: 'column',
                 gap: '10px'
               }}>
-                <svg width="32" height="32" style={{ color: 'rgba(255,255,255,.35)' }}>
-                  <use href="#ico-edit" />
-                </svg>
-                <p style={{
-                  fontSize: '10px',
-                  letterSpacing: '.12em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,.25)',
-                  textAlign: 'center',
-                  maxWidth: '100px'
-                }}>Editing &amp; post-production</p>
+                <Image src='https://res.cloudinary.com/dibwnfwk9/image/upload/v1782493704/Copy_of_untitled-02164_wmnihk.jpg'
+                  alt='visibility'
+                  width={100}
+                  height={200}
+                  unoptimized
+                  className='w-[100%] h-[400px]'
+                />
               </div>
             </div>
             <div style={{
@@ -2125,17 +2155,13 @@ export default function Home() {
                 flexDirection: 'column',
                 gap: '10px'
               }}>
-                <svg width="32" height="32" style={{ color: 'rgba(255,255,255,.35)' }}>
-                  <use href="#ico-play" />
-                </svg>
-                <p style={{
-                  fontSize: '10px',
-                  letterSpacing: '.12em',
-                  textTransform: 'uppercase',
-                  color: 'rgba(255,255,255,.25)',
-                  textAlign: 'center',
-                  maxWidth: '100px'
-                }}>Published &amp; distributed</p>
+                <Image src='https://res.cloudinary.com/dibwnfwk9/image/upload/v1782493704/Copy_of_untitled-02164_wmnihk.jpg'
+                  alt='visibility'
+                  width={100}
+                  height={200}
+                  unoptimized
+                  className='w-[100%] h-[400px]'
+                />
               </div>
             </div>
           </div>
@@ -2159,6 +2185,17 @@ export default function Home() {
               <h2 className="section-title" style={{ color: 'var(--white)' }}>
                 Build A YouTube<br />Channel That <em>Grows</em>
               </h2>
+
+              <iframe
+                width="100%"
+                height="315"
+                src="https://www.youtube.com/embed/SnXApPL3fQo"
+                title="YouTube video player"
+                style={{ border: 0, borderRadius: "12px" }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
+              />
             </div>
             <div className="fade-up">
               <p style={{
@@ -2269,7 +2306,7 @@ export default function Home() {
             }}>
               Ideal For Individuals &amp; Organisations Who Want Long-Form Authority
             </h4>
-            <div className="responsive-grid"  style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '14px' }}>
+            <div className="responsive-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '14px' }}>
               <div style={{ background: 'rgba(255,255,255,.04)', padding: '16px', borderLeft: '2px solid var(--blue)' }}>
                 <div style={{ fontSize: '13px', fontWeight: '500', color: 'var(--white)', marginBottom: '4px' }}>Personal Brands</div>
                 <p style={{ fontSize: '12px', color: 'rgba(255,255,255,.35)', lineHeight: '1.55' }}>
@@ -2404,14 +2441,12 @@ export default function Home() {
                     needs</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;150,000</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(150000, "Brand Identity - Single Session")}>Pay Now</button>
                   </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">4 Sessions — Focused brand development across multiple areas</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;450,000</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(450000, "Brand Identity - 4 Sessions")}>Pay Now</button>
                   </div>
                 </div>
                 <div className="pc-row">
@@ -2430,7 +2465,6 @@ export default function Home() {
 
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;650,000</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(650000, "Brand Identity - Full Programme")}>Pay Now</button>
                   </div>
                 </div>
               </div>
@@ -2440,21 +2474,18 @@ export default function Home() {
                   <div className="pc-row-label">Mobile Production + Raw Footage Only</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;500,000</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(500000, "Content Production - Mobile + Raw")}>Pay Now</button>
                   </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Mobile Production + Fully Edited &amp; Ready to Publish</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;750,000</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(750000, "Content Production - Mobile + Edited")}>Pay Now</button>
                   </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Premium Cinema Production + Raw Footage Only</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;1,000,000</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(1000000, "Content Production - Premium Cinema + Raw")}>Pay Now</button>
                   </div>
                 </div>
                 <div className="pc-row">
@@ -2462,14 +2493,12 @@ export default function Home() {
                   </div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;1,500,000</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(1500000, "Content Production - Premium Cinema + Edited")}>Pay Now</button>
                   </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Script Writing Assistance + Prompts (Add-On)</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;60,000</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(60000, "Add-On: Script Writing Assistance")}>Pay Now</button>
                   </div>
                 </div>
               </div>
@@ -2480,28 +2509,24 @@ export default function Home() {
                   <div className="pc-row-label">Slow Pace — 2 posts per week per platform / month</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;250,000/mo</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(250000, "Platform Management - Slow Pace (1st Month)")}>Pay Now</button>
                   </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Medium Pace — 4 posts per week per platform / month</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;450,000/mo</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(450000, "Platform Management - Medium Pace (1st Month)")}>Pay Now</button>
                   </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Fast Pace — 20 posts per platform / month</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>&#8358;550,000/mo</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(550000, "Platform Management - Fast Pace (1st Month)")}>Pay Now</button>
                   </div>
                 </div>
                 <div className="pc-row">
                   <div className="pc-row-label">Additional Platform Add-On (TikTok / YouTube Shorts)</div>
                   <div className="pc-row-price" style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span>+&#8358;100,000/mo</span>
-                    <button className="btn-primary" style={{ padding: '6px 12px', fontSize: '11px', whiteSpace: 'nowrap' }} onClick={() => handleCheckout(100000, "Add-On: Additional Platform (1st Month)")}>Pay Now</button>
                   </div>
                 </div>
               </div>
@@ -3006,8 +3031,8 @@ export default function Home() {
         </section>
       </div>
 
-      <CheckoutModal 
-        isOpen={isCheckoutOpen} 
+      <CheckoutModal
+        isOpen={isCheckoutOpen}
         onClose={() => setIsCheckoutOpen(false)}
         amount={checkoutAmount}
         packageName={checkoutPackage}
