@@ -1,7 +1,24 @@
 'use client'
 import { useEffect } from 'react';
-
+import Image from 'next/image';
+import { useRef, useState } from 'react';
 export default function Page() {
+
+    const trackRef = useRef<HTMLDivElement>(null);
+    const [carouselPos, setCarouselPos] = useState(0);
+
+    const moveCarousel = (dir: number) => {
+        if (!trackRef.current) return;
+        const track = trackRef.current;
+        const slides = track.querySelectorAll('.carousel-slide');
+        if (slides.length === 0) return;
+        const slideW = (slides[0] as HTMLElement).offsetWidth + 24;
+        const max = Math.max(0, slides.length - Math.floor(track.parentElement!.offsetWidth / slideW));
+        const newPos = Math.max(0, Math.min(max, carouselPos + dir));
+        setCarouselPos(newPos);
+        track.style.transform = `translateX(-${newPos * slideW}px)`;
+    };
+
     useEffect(() => {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => {
@@ -21,47 +38,87 @@ export default function Page() {
 
     return (
         <div className="page active">
-            <div className="page-hero">
-                <div className="section-eyebrow">Our Story</div>
-                <h1>We Help You Build<br />The Brand You <em>Deserve</em></h1>
-                <p>Princocoa Studios × PAI Consulting is a brand strategy, content production, and visibility ecosystem
-                    helping individuals and organisations communicate their value, build their presence, and grow their
-                    influence.</p>
+
+            <div className="page-hero flex items-center justify-center flex-col md:flex-row gap-6 md:gap-10"
+            >
+                <div className='w-[100%] h-full'>
+                    <Image
+                        src="https://res.cloudinary.com/dibwnfwk9/image/upload/v1782330404/Copy_of_untitled-02458_g4qeu9.jpg"
+                        alt="hero"
+                        width={100}
+                        height={100}
+                        unoptimized
+                        className='w-full h-[100%]'
+
+                    />
+                </div>
+                <div className='w-full'><div className="section-eyebrow " style={{ color: '#ffffff' }}>Our Story</div>
+                    <h1>We Help You Build<br />The Brand You <em>Deserve</em></h1>
+                    <p>Princocoa Studios × PAI Consulting is a brand strategy, content production, and visibility ecosystem
+                        helping individuals and organisations communicate their value, build their presence, and grow their
+                        influence.</p></div>
             </div>
 
+
             <section className="about-story">
+
                 <div className="section-eyebrow">Who We Are</div>
-                <div className="story-grid">
-                    <div className="story-text fade-up">
+                <div className="story-text fade-up flex flex-col gap-8">
+                    <div className="flex flex-col md:flex-row gap-3 md:gap-10 items-center justify-between">
                         <p>We started from a simple belief: <strong>too many brilliant people are invisible.</strong> Not
                             because they lack expertise, talent, or purpose—but because no one taught them how to
                             communicate their value to the world.</p>
+                        <Image
+                            src="https://res.cloudinary.com/dibwnfwk9/image/upload/v1782330404/Copy_of_untitled-02458_g4qeu9.jpg"
+                            alt="hero"
+                            width={100}
+                            height={100}
+                            unoptimized
+                            className='w-full h-[100%] max-h-[400px]'
+
+                        />
+                    </div>
+
+                    <div className="flex flex-col md:flex-row gap-3 md:gap-10 items-center justify-between">
                         <p>Princocoa Studios × PAI Consulting was built to change that. We are a partnership between two
                             complementary organisations—<strong>PAI Consulting</strong>, which specialises in personal brand
                             strategy and positioning, and <strong>Princocoa Studios</strong>, which brings that strategy to
                             life through premium content production, photography, videography, and platform management.</p>
+                        <Image
+                            src="https://res.cloudinary.com/dibwnfwk9/image/upload/v1782330404/Copy_of_untitled-02458_g4qeu9.jpg"
+                            alt="hero"
+                            width={100}
+                            height={100}
+                            unoptimized
+                            className='w-full h-[100%] max-h-[400px]'
+
+                        />
+
+                    </div>
+
+                    <div className="flex flex-col md:flex-row gap-3 md:gap-10 items-center justify-between">
+
                         <p>Together, we work with founders, coaches, creatives, consultants, speakers, faith leaders, and
                             professionals across industries—helping them clarify their message, build their brand, create
                             powerful content, and grow a digital presence that actually reflects who they are.</p>
+
+                        <Image
+                            src="https://res.cloudinary.com/dibwnfwk9/image/upload/v1782330404/Copy_of_untitled-02458_g4qeu9.jpg"
+                            alt="hero"
+                            width={100}
+                            height={100}
+                            unoptimized
+                            className='w-full h-[100%] max-h-[400px]'
+
+                        />
+
                     </div>
-                    <div className="story-photo fade-up">
-                        <svg>
-                            <use href="#ico-edit" />
-                        </svg>
-                        <p>Behind-the-scenes — strategy session &amp; brand consultation</p>
-                    </div>
+
+
                 </div>
             </section>
 
-            <div className="mission-section">
-                <div className="section-eyebrow">Our Mission</div>
-                <p className="mission-statement">To help every individual, brand, and organisation become <em>visible,
-                    memorable, and impactful</em>—by giving them the strategy, the story, and the content they need to
-                    be seen, trusted, and chosen.</p>
-                <a href="/consultation" className="btn-primary" style={{ display: 'inline-flex' }}>
-                    Start Your Journey →
-                </a>
-            </div>
+
 
             <section className="approach-section">
                 <div className="section-eyebrow">How We Work</div>
@@ -106,6 +163,59 @@ export default function Page() {
                     </div>
                 </div>
             </section>
+
+
+            <div className="testi-carousel" style={{ paddingTop: '80px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px', padding: '0' }}>
+                    <div>
+                        <div className="section-eyebrow" style={{ marginBottom: '8px' }}>Featured Testimonials</div>
+                        <h2 className="section-title" style={{ color: 'var(--white)', marginBottom: '0' }}>What Clients<br />Are Saying</h2>
+                    </div>
+                    <div className="carousel-controls">
+                        <button className="carousel-btn" onClick={() => moveCarousel(-1)}>←</button>
+                        <button className="carousel-btn" onClick={() => moveCarousel(1)}>→</button>
+                    </div>
+                </div>
+                <div className="carousel-track-wrap">
+                    <div className="carousel-track" id="carousel-track" ref={trackRef}>
+                        <div className="carousel-slide">
+                            <div className="tquote">"Within three months of completing the Personal Brand Identity programme, I
+                                received two speaking invitations, a podcast feature, and closed my biggest consulting
+                                contract to date. The investment more than paid for itself."</div>
+                            <div className="tname">Adaeze O.</div>
+                            <div className="trole">CEO &amp; Executive Coach</div>
+                        </div>
+                        <div className="carousel-slide">
+                            <div className="tquote">"The content shoot was unlike anything I expected. In one day we produced
+                                more quality content than I had created in two years. My LinkedIn engagement tripled in 30
+                                days after launch."</div>
+                            <div className="tname">Femi K.</div>
+                            <div className="trole">Founder &amp; Industry Speaker</div>
+                        </div>
+                        <div className="carousel-slide">
+                            <div className="tquote">"I came in knowing my expertise but not how to communicate it. I left with a
+                                complete brand system, a content library, and the confidence to show up as the leader I
+                                already am."</div>
+                            <div className="tname">Rita I.</div>
+                            <div className="trole">Executive Director &amp; Faith Leader</div>
+                        </div>
+                        <div className="carousel-slide">
+                            <div className="tquote">"Platform management has been a game-changer. My social media now looks
+                                professional, consistent, and strategic—without me having to spend a single hour managing
+                                it."</div>
+                            <div className="tname">Chukwuemeka A.</div>
+                            <div className="trole">Entrepreneur &amp; Business Coach</div>
+                        </div>
+                        <div className="carousel-slide">
+                            <div className="tquote">"The brand discovery session alone was worth more than I expected. I finally
+                                have clarity on who I am, who I serve, and how to communicate my value confidently in any
+                                room."</div>
+                            <div className="tname">Blessing N.</div>
+                            <div className="trole">Consultant &amp; Speaker</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <section className="why-us">
                 <div className="section-eyebrow">Why Clients Choose Us</div>
@@ -169,14 +279,28 @@ export default function Page() {
                 </div>
             </section>
 
+            <div className="mission-section" style={{ marginBottom: '30px' }}>
+                <div className="section-eyebrow">Our Mission</div>
+                <p className="mission-statement">To help every individual, brand, and organisation become <em>visible,
+                    memorable, and impactful</em>—by giving them the strategy, the story, and the content they need to
+                    be seen, trusted, and chosen.</p>
+                <a href="/consultation" className="btn-primary" style={{ display: 'inline-flex' }}>
+                    Start Your Journey →
+                </a>
+            </div>
+
+
             <section className="founder-section">
                 <div className="section-eyebrow">The People Behind The Work</div>
                 <div className="founder-grid">
                     <div className="founder-photo fade-up">
-                        <svg style={{ color: 'rgba(255,255,255,0.4)' }}>
-                            <use href="#ico-person" />
-                        </svg>
-                        <p>Founder photograph — professional portrait in a premium environment</p>
+                        <Image src='https://res.cloudinary.com/dibwnfwk9/image/upload/v1782330411/Copy_of_DSC02776_2_ym5m3w.jpg'
+                            alt='visibility'
+                            width={100}
+                            height={200}
+                            unoptimized
+                            className='w-[100%] h-[500px] object-cover'
+                        />
                         <div className="founder-photo-badge">
                             <strong>Founder, Princocoa Studios × PAI Consulting</strong>
                             <span>Brand Strategist &amp; Creative Director</span>

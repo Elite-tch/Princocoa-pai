@@ -7,10 +7,12 @@ import { usePathname } from "next/navigation";
 export default function NavBar() {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+    const [isServicesOpen, setIsServicesOpen] = useState(false);
 
     // Close menu when route changes
     useEffect(() => {
         setIsOpen(false);
+        setIsServicesOpen(false);
     }, [pathname]);
 
     // Close menu when clicking outside
@@ -48,31 +50,50 @@ export default function NavBar() {
         setIsOpen(!isOpen);
     };
 
+    const closeMenu = () => {
+        setIsOpen(false);
+        setIsServicesOpen(false);
+    };
+
+    const closeServicesMenu = () => {
+        setIsServicesOpen(false);
+    };
+
     return (
-        <nav id="main-nav" className="overflow-hidden">
+        <nav id="main-nav" className="">
             <Link href="/" className="nav-logo">
                 Princocoa<span> × </span>PAI
             </Link>
 
             <ul className={`nav-links ${isOpen ? 'open' : ''}`} id="nav-links">
-                <li><Link href="/" className={pathname === '/' ? 'active-page' : ''}>Home</Link></li>
-                <li><Link href="/about" className={pathname === '/about' ? 'active-page' : ''}>About</Link></li>
-                <li className="nav-dropdown">
-                    <Link href="/services" className={pathname.startsWith('/services') ? 'active-page' : ''}>Services</Link>
+                <li><Link href="/" className={pathname === '/' ? 'active-page' : ''} onClick={closeMenu}>Home</Link></li>
+                <li><Link href="/about" className={pathname === '/about' ? 'active-page' : ''} onClick={closeMenu}>About</Link></li>
+                <li
+                    className={`nav-dropdown ${isServicesOpen ? 'open' : ''}`}
+                    onMouseEnter={() => setIsServicesOpen(true)}
+                    onMouseLeave={closeServicesMenu}
+                    onFocusCapture={() => setIsServicesOpen(true)}
+                    onBlurCapture={(e) => {
+                        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+                            closeServicesMenu();
+                        }
+                    }}
+                >
+                    <Link href="/services" className={pathname.startsWith('/services') ? 'active-page' : ''} onClick={closeMenu}>Services</Link>
                     <div className="nav-drop-menu">
-                        <Link href="/services/personal-brand-identity">Personal Brand Identity Consultation</Link>
-                        <Link href="/services/content-production">Content Production &amp; Brand Storytelling</Link>
-                        <Link href="/services/platform-management">Platform Management &amp; Community Growth</Link>
-                        <Link href="/services/podcast-production">Podcast Production</Link>
-                        <Link href="/services/youtube-production">YouTube Channel Production</Link>
-                        <Link href="/services/additional-visibility">Additional Visibility Services</Link>
+                        <Link href="/services/personal-brand-identity" onClick={closeMenu}>Personal Brand Identity Consultation</Link>
+                        <Link href="/services#service2" onClick={closeMenu}>Content Production &amp; Brand Storytelling</Link>
+                        <Link href="/services#service3" onClick={closeMenu}>Platform Management &amp; Community Growth</Link>
+                        <Link href="/services#service-podcast" onClick={closeMenu}>Podcast Production</Link>
+                        <Link href="/services#service-youtube" onClick={closeMenu}>YouTube Channel Production</Link>
+                        <Link href="/services#growth" onClick={closeMenu}>Growth &amp; Visibility Services</Link>
                     </div>
                 </li>
-                <li><Link href="/portfolio" className={pathname === '/portfolio' ? 'active-page' : ''}>Portfolio</Link></li>
-                <li><Link href="/who-we-work-with" className={pathname === '/who-we-work-with' ? 'active-page' : ''}>Who We Work With</Link></li>
-                <li><Link href="/testimonials" className={pathname === '/testimonials' ? 'active-page' : ''}>Testimonials</Link></li>
-                <li><Link href="/consultation" className={pathname === '/consultation' ? 'active-page' : ''}>Contact</Link></li>
-                <li><Link href="/consultation" className="nav-cta">Book a Consultation</Link></li>
+                <li><Link href="/portfolio" className={pathname === '/portfolio' ? 'active-page' : ''} onClick={closeMenu}>Portfolio</Link></li>
+                <li><Link href="/who-we-work-with" className={pathname === '/who-we-work-with' ? 'active-page' : ''} onClick={closeMenu}>Who We Work With</Link></li>
+                <li><Link href="/testimonials" className={pathname === '/testimonials' ? 'active-page' : ''} onClick={closeMenu}>Testimonials</Link></li>
+                <li><Link href="/consultation" className={pathname === '/consultation' ? 'active-page' : ''} onClick={closeMenu}>Contact</Link></li>
+                <li><Link href="/consultation" className="nav-cta" onClick={closeMenu}>Book a Consultation</Link></li>
             </ul>
 
             <button

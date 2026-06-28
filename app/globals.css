@@ -46,13 +46,14 @@
   --accent-light: #F8F8F8;
   --serif: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
   --sans: var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
-  --section-pad: 110px 6vw;
+  --section-pad: 82px 6vw;
   --radius: 6px;
   --tr: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 130px;
 }
 
 body {
@@ -125,6 +126,15 @@ nav {
   position: relative;
 }
 
+.nav-dropdown::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  height: 16px;
+}
+
 .nav-dropdown>a {
   display: flex;
   align-items: center;
@@ -143,12 +153,16 @@ nav {
   transition: transform 0.2s;
 }
 
+.nav-dropdown.open>a::after,
 .nav-dropdown:hover>a::after {
   transform: rotate(-135deg) translateY(-2px);
 }
 
 .nav-drop-menu {
-  display: none;
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
   position: absolute;
   top: calc(100% + 16px);
   left: 50%;
@@ -162,8 +176,10 @@ nav {
   overflow: hidden;
 }
 
-.nav-dropdown:hover .nav-drop-menu {
-  display: block;
+.nav-dropdown.open .nav-drop-menu {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .nav-drop-menu a {
@@ -1051,7 +1067,7 @@ section {
 }
 
 .s1-outcomes-right {
-  background: var(--black);
+  background: black;
   padding: 52px 48px;
 }
 
@@ -3382,7 +3398,7 @@ footer {
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .story-text p {
@@ -3615,7 +3631,7 @@ footer {
   bottom: 24px;
   left: 24px;
   right: 24px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 14px 18px;
 }
@@ -3624,7 +3640,7 @@ footer {
   font-family: var(--serif);
   font-size: 18px;
   font-weight: 300;
-  color: var(--white);
+  color: var(--black);
   display: block;
   margin-bottom: 2px;
 }
@@ -3981,11 +3997,10 @@ footer {
 }
 
 .carousel-slide {
-  min-width: 380px;
+  flex: 0 0 calc((100% - 72px) / 4);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 36px 32px;
-  flex-shrink: 0;
 }
 
 .carousel-slide .tquote {
@@ -4680,5 +4695,11 @@ footer {
   .growth-grid-2,
   .service-modules {
     grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-slide {
+    flex: 0 0 calc((100% - 24px) / 2);
   }
 }
