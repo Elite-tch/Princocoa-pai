@@ -29,7 +29,7 @@ export default function ServicePage() {
                         portraits, lifestyle imagery, and brand films, all ready to publish.
                     </p>
                 </div>
-                <div className="split-photo">
+                <div className="split-photo " >
                     <video
                         src="https://res.cloudinary.com/dibwnfwk9/video/upload/v1782330554/Copy_of_DJI_20251215_100119_667_AM_video_zyshpe.mp4"
                         autoPlay
@@ -164,7 +164,7 @@ export default function ServicePage() {
                                             src="https://res.cloudinary.com/dibwnfwk9/video/upload/v1782491928/chef_sia_ad__talking_head_1_ouai2i.mp4"
                                             title="Mobile Production Example"
                                             frameBorder="0"
-                                            allow="autoplay; encrypted-media; picture-in-picture; accelerometer; picture-in-picture"
+                                            allow=" encrypted-media; picture-in-picture; accelerometer; picture-in-picture"
                                             allowFullScreen
                                             style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '100%' }}
                                         />
