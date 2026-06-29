@@ -79,7 +79,35 @@ export default function NavBar() {
                         }
                     }}
                 >
-                    <Link href="/services" className={pathname.startsWith('/services') ? 'active-page' : ''} onClick={closeMenu}>Services</Link>
+                    <span
+                        role="button"
+                        tabIndex={0}
+                        className={`nav-services-toggle ${pathname.startsWith('/services') ? 'active-page' : ''}`}
+                        onClick={(e) => {
+                            // On mobile (no hover), toggle the dropdown on tap
+                            if (window.matchMedia('(max-width: 900px)').matches) {
+                                e.preventDefault();
+                                setIsServicesOpen(!isServicesOpen);
+                            }
+                        }}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === ' ') {
+                                if (window.matchMedia('(max-width: 900px)').matches) {
+                                    e.preventDefault();
+                                    setIsServicesOpen(!isServicesOpen);
+                                }
+                            }
+                        }}
+                    >
+                        <Link href="/services" className={pathname.startsWith('/services') ? 'active-page' : ''} onClick={(e) => {
+                            if (window.matchMedia('(max-width: 900px)').matches) {
+                                e.preventDefault(); // prevent navigation; tap toggles dropdown instead
+                                setIsServicesOpen(!isServicesOpen);
+                            } else {
+                                closeMenu();
+                            }
+                        }}>Services</Link>
+                    </span>
                     <div className="nav-drop-menu">
                         <Link href="/services/personal-brand-identity" onClick={closeMenu}>Personal Brand Identity Consultation</Link>
                         <Link href="/services#service2" onClick={closeMenu}>Content Production &amp; Brand Storytelling</Link>
