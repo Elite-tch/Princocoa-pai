@@ -733,7 +733,7 @@ section {
   grid-template-columns: 1fr 1fr;
   gap: 0;
   padding-top: 30px;
-  min-height: 480px;
+  min-height: 400px;
 }
 
 .split-section.reverse {

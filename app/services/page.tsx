@@ -44,7 +44,7 @@ export default function ServicePage() {
             </div>
 
             {/* SERVICE 2 */}
-            <section className="service-2" id="service2" style={{ paddingTop: '0', scrollMarginTop: '130px' }}>
+            <section className="service-2" id="service2" style={{ paddingTop: '0', scrollMarginTop: '10px' }}>
                 <div className="s2-grid">
                     <div className="s2-deliverables fade-up">
                         <h3>Your Content Library</h3>
